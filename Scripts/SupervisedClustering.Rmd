@@ -1,0 +1,39 @@
+---
+title: "Supervised Clustering of Personality Traits Dataset"
+author: "Josephine Kaminaga"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+In this section of the vignette, we will demonstrate how to apply two common supervised clustering methods to the personality traits dataset. These two methods are partitioning around medoids (PAM) and constrained k-means clustering with background knowledge (COP K-means).
+
+PAM can be implemented with the `cluster` package, while COP K-means can be implemented with `conclust`. (Note: this package was removed from CRAN, and we are using a downloaded & archived version of the `ckmeans()` function that is used to perform COP K-means clustering). The PAM method partitions data around medoids, which are data points representing the clusters which are picked with supervised methods. The COP K-means algorithm implements constraints on which data points must and must not be in the same cluster as each other. Through both of these methods, we can conduct supervised clustering.
+
+```{r setup}
+library(tidyverse)
+library(cluster)
+
+personality <- read.csv("../data/raw/personality_synthetic_dataset.csv")
+source("ckmeans.R")
+```
+
+## PAM
+
+```{r}
+personality <- personality |>
+  mutate(
+    personality_type = as.factor(personality_type)
+  )
+
+pam_clustered <- pam(personality, 3, diss = FALSE,
+    metric = "euclidean"
+    )
+summary(pam_clustered)
+plot(pam_clustered)
+```
+
+
+```{r}
+?kmeans
+```
+
