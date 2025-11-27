@@ -1,13 +1,13 @@
 ---
 title: "Supervised Clustering of Personality Traits Dataset"
-author: "Josephine Kaminaga"
+author: "Josephine Kaminaga, Aarti Garaye"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
 In this section of the vignette, we will demonstrate how to apply two common supervised clustering methods to the personality traits dataset. These two methods are partitioning around medoids (PAM) and constrained k-means clustering with background knowledge (COP K-means).
 
-PAM can be implemented with the `cluster` package, while COP K-means can be implemented with `conclust`. (Note: this package was removed from CRAN, and we are using a downloaded & archived version of the `ckmeans()` function that is used to perform COP K-means clustering). The PAM method partitions data around medoids, which are data points representing the clusters which are picked with supervised methods. The COP K-means algorithm implements constraints on which data points must and must not be in the same cluster as each other. Through both of these methods, we can conduct supervised clustering.
+PAM can be implemented with the `cluster` package, while COP K-means can be implemented with `conclust`. (Note: this package was removed from CRAN, and we are using a downloaded & archived version of the `ckmeans()` function that is used to perform COP K-means clustering). The PAM method partitions data around medoids, which are data points that are most representative of the clustered structure of the data. Quoting from the `cluster` package description: "the goal is to find *k* representative objects which minimize the sum of their dissimilarities of the observations to their closest representative object", where the 'representative object' is a medoid. The COP K-means algorithm implements constraints on which data points must and must not be in the same cluster as each other. Through both of these methods, we can conduct supervised clustering.
 
 ```{r setup}
 library(tidyverse)
@@ -19,7 +19,9 @@ source("ckmeans.R")
 
 ## PAM
 
-```{r}
+The workhorse function for PAM is the `pam()` function from the `cluster` package. This function requires an `x` argument, which is the data matrix or dataframe to perform clustering on, and a `k` argument which represents the number of clusters that we are looking for. There are a number of other optional arguments which enable flexibility for this function. In the function call below, we are specifying `diss = FALSE` to ensure that the function does not think `x` is a dissimilarity matrix, and `metric = "euclidean"` due to the multidimensional nature of our personality dataset. While some implementations of PAM require that the user manually finds medoids, this implementation conducts the search for a suitable initial set of medoids by itself.
+
+```{r fit-pam}
 personality <- personality |>
   mutate(
     personality_type = as.factor(personality_type)
@@ -28,12 +30,32 @@ personality <- personality |>
 pam_clustered <- pam(personality, 3, diss = FALSE,
     metric = "euclidean"
     )
-summary(pam_clustered)
-plot(pam_clustered)
 ```
 
+The results of the PAM model can be visualized by calling `plot()` upon the PAM model. Below, we can see that when `plot()` is called, we obtain a PCA-reminiscent plot of the personality data along two components that together explain 43.92% of the variability in the data. PAM has identified the three distinct clusters that stand out in this representation. We also obtain a numeric description of the clusters' sizes and numeric widths in the component space.
+
+```{r plot-pam-results}
+plot(pam_clustered, main = "PAM Cluster Plot for Personality Data")
+```
+We can obtain further results by inspecting the fitted elements of the PAM model directly. As seen below, the PAM model returns information about the medoids, their locations, the clusters and their sizes, and some other miscellaneous attributes of the data.
+
+```{r inspect-pam-results}
+names(pam_clustered)
+```
+The most important information from the PAM model can be found by accessing the `medoids`, `clusinfo`, and `silinfo` attributes. The `medoids` attribute contains the values of each medoid along each variable in the data, as seen below.
+
+```{r medoids}
+pam_clustered$medoids
+```
+
+The `clusinfo` attribute contains information about the size and dissimilarities of each identified cluster, while the `silinfo` attribute describes the silhouette of the PAM model (a measurement of cluster consistency) and contains multiple smaller attributes - `widths` has information about the designated cluster and silhouette width of each individual data point, `clus.avg.widths` has the average silhouette width of each identified cluster, and `avg.width` is the average width across all clusters. Since `widths` is quite the long attribute, we will skip that and show `clus.avg.widths` instead.
 
 ```{r}
-?kmeans
+pam_clustered$clusinfo
+
+names(pam_clustered$silinfo)
+
+pam_clustered$silinfo$clus.avg.widths
 ```
+
 
