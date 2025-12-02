@@ -8,7 +8,7 @@ library(dplyr)
 library(caret)
 
 personality <- read.csv("data/raw/personality_synthetic_dataset.csv")
-head(personality_raw)
+head(personality)
 
 # Which variables have missing data, if any
 vis_miss(personality) # No missing data yay! 
