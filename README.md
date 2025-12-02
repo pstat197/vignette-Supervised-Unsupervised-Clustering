@@ -1,33 +1,22 @@
-# vignette-UnsupervisedDBScan
-Unsupervised three class classification of Synthetic Personality Traits using DBScan, KMeans, and LogReg in R
-test -nicole
-Testing to make sure I have access to repo - Josephine
+# Supervised & Unsupervised Clustering Vignette
+This is a vignette on implementing selected supervised and unsupervised clustering methods using a synthetic personality traits dataset, created as a class project for PSTAT197A in Fall 2025.
 
-# Project Brainstorming
-We will be brainstorming the specific prompt & the relevant tasks for our project.
+**Contributors:** Aarti Garaye, Josephine Kaminaga, Jimmy Wu, & Nicole Xu
 
-## FEEDBACK FROM COBURN
+# Abstract
+This vignette focuses on four specific clustering methods: COP K-means and partitioning along medoids (which are supervised methods), and DBSCAN and unsupervised K-means (which are unsupervised methods). Our goal is to compare and contrast the algorithms and implementations of these methods in R, exhibiting their usecases and power. The example data we work with comes from a synthetic personality traits downloaded from Kaggle. With 20,000 entries, 29 covariates, and 3 classifications (introvert, extrovert, and ambivert), this dataset is ideal for demonstrating how our chosen clustering methods work at a large scale. 
 
-our framing of this project is "how to implement different clustering approaches" and not so much a compare/contrast of supervised vs unsupervised
+# Contents
+The vignette itself is located in the main directory of this repository, titled vignette.html. In the **data** folder, we have a **raw** folder which contains our raw personality traits dataset. We additionally have a **scripts** folder which contains all code used to produce this vignette. The **drafts** subdirectory contains our initial code, while the **vignette-script.R** file contains the final combined code used to produce the results shown in our vignette.
 
-## 1. What structure exists in this dataset, and how well can we predict an important outcome using both unsupervised (DBSCAN, K-means) and supervised (logistic regression, XGBoost) methods?
-For this potential topic, the skeleton can be roughly divided into four sections (and so each of us may pick one if we decided to go forward):
+# References
 
-- **Section 1: Data / Feature Exploration and transition to unsupervised clustering**. Conduct exploratory data analysis (identify key features for clustering and prediction) and conduct DBSCAN.
-- **Section 2: Unsupervised Clustering**. Run K-means, compare DBSCAN and K-means, visualize clusters.
-- **Section 3: Supervised Clustering**. Build COP-KMeans and PAM (partitioning around medoids) clustering algorithms. Report accuracy.
-- **Section 4: Integration & Comparison**. Conduct cluster-to-target analysis and combine the findings.
+Hahsler, Michael, Matthew Piekenbrock, and Derek Doran. "dbscan: Fast density-based clustering with R." Journal of Statistical Software 91 (2019): 1-30.
 
-The above proposed tasks are not independent (but I've made sure that each person is able to meaningfully participate), so one person may need to wait for another to finish their task in order to proceed. Alternatively, we can also split the task into four independent sections, to which each of us can work independently.
+Hartigan, John A., and Manchek A. Wong. "Algorithm AS 136: A k-means clustering algorithm." Journal of the royal statistical society. series c (applied statistics) 28.1 (1979): 100-108.
 
-## Aarti Update Today
-I did some basic EDA, I think it was best to do it as a .RMD since it had a lot of visuals and rendering them as html helped and now we can just copy paste :)
+Miah, Arif. “Introvert, Extrovert & Ambivert Classification.” Kaggle.com, 2025, www.kaggle.com/datasets/miadul/introvert-extrovert-and-ambivert-classification.
 
-Results of EDA: 
-- There is high correlation between predictor variables so we need to include some interaction terms when modelling.
-- The classes are pretty balanced so we don't need to use random strata for that
-- ANOVA test tells that the most important variable is party-liking.
-- Varibales that don't contribute much are creativity, stress-handling, and emotional-stability so we can drop those and the interaction terms with those
+Schubert, Erich, and Peter J. Rousseeuw. "Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms." International conference on similarity search and applications. Cham: Springer International Publishing, 2019.
 
-What still needs to be done
-- I'm not sure why DBScan was in the EDA section but I didn't do that, feel free to add anything you think is worth it to have in the EDA section.
+Wagstaff, Kiri, et al. "Constrained k-means clustering with background knowledge." Icml. Vol. 1. 2001.

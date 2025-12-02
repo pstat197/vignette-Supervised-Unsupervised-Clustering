@@ -58,6 +58,13 @@ names(pam_clustered$silinfo)
 pam_clustered$silinfo$clus.avg.widths
 ```
 
+We can also compare the cluster assignments of PAM with the true group labels of the data. The cluster assignments of PAM are found in the `clustering` attribute.
+
+```{r}
+table(pam_clustered$clustering, personality$personality_type)
+```
+As seen in the table above, the clustering results of PAM are extremely accurate. Ambivert seems like the hardest group to cluster correctly, which makes sense due to its position as a median group between extrovert and introvert.
+
 
 ## Constrained K-Means
 
