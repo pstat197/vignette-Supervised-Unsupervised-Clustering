@@ -9,9 +9,9 @@ library(here)
 library(factoextra)
 
 # Loading the COP K-means function
-source("ckmeans.R")
+source("Scripts/ckmeans.R")
 
-personality <- read.csv("../data/raw/personality_synthetic_dataset.csv")
+personality <- read.csv("data/raw/personality_synthetic_dataset.csv")
 
 #################################
 # Supervised clustering methods #
