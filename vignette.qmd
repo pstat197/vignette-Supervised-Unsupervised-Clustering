@@ -315,20 +315,6 @@ htmltools::HTML(knitr::kable(cluster_centers, format = "html", caption = "The me
 )
 ```
 
-To see how each of the clusters are different than each other we use Silhoutte plot just like we did for PAM. The silhouette plot provides a visual summary of how well each observation fits within its assigned cluster relative to the other clusters. For each data point, the silhouette width ranges from –1 to 1 where values close to 1 indicates the observations are well matched to the clusters they are assigned to. Values close to 0 indicates that the observation is on the borders between the clusters. Negative values means that the point may have been miscalculated, meaning it is closer to another cluster than its assigned one.
-```{r copkmeans_sil}
-dist_mat <- dist(personality_num)
-
-sil <- silhouette(ck_clusters, dist_mat)
-
-plot(sil, main = "Silhouette Plot for COP K-Means")
-```
-
-In the silhouette plot for COP K-Means, each bar represents an individual observation, grouped by cluster and sorted by silhouette width. The height and consistency of the bars show how tight and well-separated each cluster is. As we can see this is very similar to the PAM. Below is the summary table for the COP KMeans.
-```{r summ-sil}
-summary(sil)
-```
-
 Finally, we can cross check this with the truth. We can only do this because we are practicing Supervised Learning.
 ```{r truth-cpkmeans}
 table(ck_clusters, personality$personality_type)
