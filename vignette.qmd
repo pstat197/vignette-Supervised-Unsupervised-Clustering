@@ -176,9 +176,14 @@ personality <- personality |>
     personality_type = as.factor(personality_type)
   )
 
-pam_clustered <- pam(personality, 3, diss = FALSE,
-    metric = "euclidean"
-    )
+# pam_clustered <- pam(personality, 3, diss = FALSE,
+#     metric = "euclidean"
+#     )
+# 
+# saveRDS(pam_clustered, file = "vignette_files/model-results/PAM_model.rds")
+
+# Reading in the PAM model from files since the model takes a long time to run
+pam_clustered <- readRDS("vignette_files/model-results/PAM_model.rds")
 ```
 
 The results of the PAM model can be visualized by calling `plot()` upon the PAM model. Below, we can see that when `plot()` is called, we obtain a PCA-reminiscent plot of the personality data along two components that together explain 43.92% of the variability in the data. PAM has identified the three distinct clusters that stand out in this representation. We also obtain a numeric description of the clusters' sizes and numeric widths in the component space.
