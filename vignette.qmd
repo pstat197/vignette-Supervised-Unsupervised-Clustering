@@ -505,3 +505,11 @@ By contrast, DBSCAN uses a density-based approach, which is advantageous for dis
 Conclusively, the comparison reveals that while all methods capture the dominant personality dimension, their effectiveness depends on the assumptions they impose. K-means is efficient and stable for large numeric datasets; PAM offers robustness and interpretability; COP-KMeans excels when slight supervision is available; and DBSCAN is best suited for non-spherical clusters and outlier detection. These results demonstrate how clustering algorithms with different philosophies can provide complementary perspectives while ultimately converging on the same core structure within the data.
 
 # References
+
+Hartigan, John A., and Manchek A. Wong. "Algorithm AS 136: A k-means clustering algorithm." Journal of the royal statistical society. series c (applied statistics) 28.1 (1979): 100-108.
+
+Miah, Arif. “Introvert, Extrovert & Ambivert Classification.” Kaggle.com, 2025, www.kaggle.com/datasets/miadul/introvert-extrovert-and-ambivert-classification.
+
+Schubert, Erich, and Peter J. Rousseeuw. "Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms." International conference on similarity search and applications. Cham: Springer International Publishing, 2019.
+
+Wagstaff, Kiri, et al. "Constrained k-means clustering with background knowledge." Icml. Vol. 1. 2001.

@@ -1512,9 +1512,17 @@ Available fields: cluster, eps, minPts, metric, borderPoints</code></pre>
 </section>
 <section id="conclusion" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
+<p>Across all four clustering methods, including PAM, COP-KMeans, DBSCAN, and K-means, our analysis reveals a consistent structure in the <em>Personality Synthetic Dataset</em>. Despite using different definitions of similarity, each method identifies clear separation along the dataset’s dominant personality dimension, mainly along the introversion–extroversion axis. This phenomenon across models demonstrate that the dataset contains meaningful psychological structure.</p>
+<p>The distance-based methods, such as PAM, COP-KMeans, and K-means, perform particularly well because the clusters in this dataset are compact and roughly spherical. PAM and COP-KMeans both concluded three groups corresponding to introverts, extroverts, and an intermediate ambivert-like cluster. Additionally, K-means, optimized for simple geometric separation, identifies the strongest two-group structure, which is the introverts-extroverts structure, but does not consistently detect the subtler third cluster, which is the ambivert cluster.</p>
+<p>By contrast, DBSCAN uses a density-based approach, which is advantageous for discovering irregular cluster shapes and identifying noise. However, in this high-dimensional setting, density estimation becomes unstable, causing DBSCAN to flag many points as noise. Even so, the major clusters it identifies remain consistent with the distance-based methods.</p>
+<p>Conclusively, the comparison reveals that while all methods capture the dominant personality dimension, their effectiveness depends on the assumptions they impose. K-means is efficient and stable for large numeric datasets; PAM offers robustness and interpretability; COP-KMeans excels when slight supervision is available; and DBSCAN is best suited for non-spherical clusters and outlier detection. These results demonstrate how clustering algorithms with different philosophies can provide complementary perspectives while ultimately converging on the same core structure within the data.</p>
 </section>
 <section id="references" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<p>Hartigan, John A., and Manchek A. Wong. “Algorithm AS 136: A k-means clustering algorithm.” Journal of the royal statistical society. series c (applied statistics) 28.1 (1979): 100-108.</p>
+<p>Miah, Arif. “Introvert, Extrovert &amp; Ambivert Classification.” Kaggle.com, 2025, www.kaggle.com/datasets/miadul/introvert-extrovert-and-ambivert-classification.</p>
+<p>Schubert, Erich, and Peter J. Rousseeuw. “Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms.” International conference on similarity search and applications. Cham: Springer International Publishing, 2019.</p>
+<p>Wagstaff, Kiri, et al.&nbsp;“Constrained k-means clustering with background knowledge.” Icml. Vol. 1. 2001.</p>
 <!-- -->
 
 </section>
@@ -2468,10 +2476,24 @@ Available fields: cluster, eps, minPts, metric, borderPoints</code></pre>
 <span id="cb39-507"><a href="#cb39-507" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-508"><a href="#cb39-508" aria-hidden="true" tabindex="-1"></a>Overall, K-means clustering reveals that the *Personality Synthetic Dataset* contains two dominant personality groups. Model-selection diagnostics, trait summaries, and PCA visualization all support this two-cluster structure. These groups correspond closely to introversion and extroversion, one of the most widely studied axes in personality psychology.</span>
 <span id="cb39-509"><a href="#cb39-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-510"><a href="#cb39-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb39-510"><a href="#cb39-510" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a>Across all four clustering methods, including PAM, COP-KMeans, DBSCAN, and K-means, our analysis reveals a consistent structure in the *Personality Synthetic Dataset*. Despite using different definitions of similarity, each method identifies clear separation along the dataset's dominant personality dimension, mainly along the introversion–extroversion axis. This phenomenon across models demonstrate that the dataset contains meaningful psychological structure.</span>
 <span id="cb39-512"><a href="#cb39-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a>The distance-based methods, such as PAM, COP-KMeans, and K-means, perform particularly well because the clusters in this dataset are compact and roughly spherical. PAM and COP-KMeans both concluded three groups corresponding to introverts, extroverts, and an intermediate ambivert-like cluster. Additionally, K-means, optimized for simple geometric separation, identifies the strongest two-group structure, which is the introverts-extroverts structure, but does not consistently detect the subtler third cluster, which is the ambivert cluster.</span>
+<span id="cb39-514"><a href="#cb39-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-515"><a href="#cb39-515" aria-hidden="true" tabindex="-1"></a>By contrast, DBSCAN uses a density-based approach, which is advantageous for discovering irregular cluster shapes and identifying noise. However, in this high-dimensional setting, density estimation becomes unstable, causing DBSCAN to flag many points as noise. Even so, the major clusters it identifies remain consistent with the distance-based methods.</span>
+<span id="cb39-516"><a href="#cb39-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-517"><a href="#cb39-517" aria-hidden="true" tabindex="-1"></a>Conclusively, the comparison reveals that while all methods capture the dominant personality dimension, their effectiveness depends on the assumptions they impose. K-means is efficient and stable for large numeric datasets; PAM offers robustness and interpretability; COP-KMeans excels when slight supervision is available; and DBSCAN is best suited for non-spherical clusters and outlier detection. These results demonstrate how clustering algorithms with different philosophies can provide complementary perspectives while ultimately converging on the same core structure within the data.</span>
+<span id="cb39-518"><a href="#cb39-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-519"><a href="#cb39-519" aria-hidden="true" tabindex="-1"></a><span class="fu"># References</span></span>
+<span id="cb39-520"><a href="#cb39-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-521"><a href="#cb39-521" aria-hidden="true" tabindex="-1"></a>Hartigan, John A., and Manchek A. Wong. "Algorithm AS 136: A k-means clustering algorithm." Journal of the royal statistical society. series c (applied statistics) 28.1 (1979): 100-108.</span>
+<span id="cb39-522"><a href="#cb39-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-523"><a href="#cb39-523" aria-hidden="true" tabindex="-1"></a>Miah, Arif. “Introvert, Extrovert &amp; Ambivert Classification.” Kaggle.com, 2025, www.kaggle.com/datasets/miadul/introvert-extrovert-and-ambivert-classification.</span>
+<span id="cb39-524"><a href="#cb39-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-525"><a href="#cb39-525" aria-hidden="true" tabindex="-1"></a>Schubert, Erich, and Peter J. Rousseeuw. "Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms." International conference on similarity search and applications. Cham: Springer International Publishing, 2019.</span>
+<span id="cb39-526"><a href="#cb39-526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-527"><a href="#cb39-527" aria-hidden="true" tabindex="-1"></a>Wagstaff, Kiri, et al. "Constrained k-means clustering with background knowledge." Icml. Vol. 1. 2001.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
