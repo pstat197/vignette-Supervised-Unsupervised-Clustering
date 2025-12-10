@@ -491,7 +491,7 @@ ggplot(pca_df, aes(x = PC1, y = PC2, colour = cluster)) +
   theme_minimal()
 ```
 
-The PCA plot shows that Cluster 1 and Cluster 2 form two distinct clouds of points. Separation is strongest along PC1, suggesting this component captures the extroversion–introversion axis. This visualization confirms that the clusters are structurally distinct and interpretable within psychological constructs.
+The PCA plot shows that Cluster 1 and Cluster 2 occupy different regions along the first principal component (PC1), which shows a meaningful separation between the groups. The strongest variation occurs along PC1, which appears to represent an extroversion–introversion dimension. This supports the K-means solution with two dominant clusters. Interestingly, the projection reveals a subtle tri-modal pattern along PC1, suggesting that additional substructure may exist within the dataset. However, the two-cluster solution still captures the most significant division in personality traits. 
 
 Overall, K-means clustering reveals that the *Personality Synthetic Dataset* contains two dominant personality groups. Model-selection diagnostics, trait summaries, and PCA visualization all support this two-cluster structure. These groups correspond closely to introversion and extroversion, one of the most widely studied axes in personality psychology.
 
