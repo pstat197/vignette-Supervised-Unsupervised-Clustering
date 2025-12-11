@@ -11,8 +11,6 @@ The vignette itself is located in the main directory of this repository, titled 
 
 # References
 
-Hahsler, Michael, Matthew Piekenbrock, and Derek Doran. "dbscan: Fast density-based clustering with R." Journal of Statistical Software 91 (2019): 1-30.
-
 Hartigan, John A., and Manchek A. Wong. "Algorithm AS 136: A k-means clustering algorithm." Journal of the royal statistical society. series c (applied statistics) 28.1 (1979): 100-108.
 
 Miah, Arif. “Introvert, Extrovert & Ambivert Classification.” Kaggle.com, 2025, www.kaggle.com/datasets/miadul/introvert-extrovert-and-ambivert-classification.
@@ -20,3 +18,13 @@ Miah, Arif. “Introvert, Extrovert & Ambivert Classification.” Kaggle.com, 20
 Schubert, Erich, and Peter J. Rousseeuw. "Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms." International conference on similarity search and applications. Cham: Springer International Publishing, 2019.
 
 Wagstaff, Kiri, et al. "Constrained k-means clustering with background knowledge." Icml. Vol. 1. 2001.
+
+Meinshausen, N., & Bühlmann, P. (2010). Stability selection. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 72(4), 417–473.
+
+Tibshirani, R. (1996). Regression shrinkage and selection via the Lasso. Journal of the Royal Statistical Society: Series B, 58(1), 267–288.
+
+Zou, H., & Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society: Series B, 67(2), 301–320.
+
+Zhao, P., & Yu, B. (2006). On model selection consistency of Lasso. Journal of Machine Learning Research, 7, 2541–2563.
+
+Wainwright, M. J. (2009). Sharp thresholds for high-dimensional and noisy sparsity recovery using Lasso. IEEE Transactions on Information Theory, 55(5), 2183–2202.

@@ -359,7 +359,7 @@ We remove the noise points and visualize our clusters using the `factoextra` pac
 ```{r}
 pers_combined <- personality %>% mutate(cluster = pers_dbscan$cluster) %>% filter(cluster != 0)
 
-fviz_cluster(list(clusters = pers_combined[,31], data = pers_combined[,2:30]), geom = "point", ellipse = TRUE, main = "DBScan Clustering w/o noise values")
+fviz_cluster(list(clusters = pers_combined[,31], data = pers_combined[,2:30]), geom = "point", ellipse = TRUE, main = "DBScan Clustering w/o noise values") + theme_bw()
 ```
 The visualization shows 3 strong clusters with some overlap, which follows general intuition about personality types. We see also that PC1 captures 47.9% of the variation between data points.
 
@@ -413,7 +413,8 @@ ggplot(wss_df, aes(x = k, y = tot_withinss)) +
   geom_point() +
   labs(title = "Elbow plot for K-means",
        x = "Number of clusters (k)",
-       y = "Total within-cluster sum of squares")
+       y = "Total within-cluster sum of squares") +
+  theme_bw()
 ```
 The elbow plot shows the total within-cluster sum of squares decreasing sharply from k = 1 to k = 2, with diminishing improvements for k $\geq$ 3. This indicates that going beyond two clusters adds little additional explanatory power.
 
@@ -436,7 +437,8 @@ ggplot(sil_df, aes(x = k, y = sil_width)) +
   geom_point() +
   labs(title = "Average silhouette width by k",
        x = "Number of clusters (k)",
-       y = "Average silhouette width")
+       y = "Average silhouette width") +
+  theme_bw()
 ```
 The silhouette analysis shows the highest average silhouette width at k = 2, with values decreasing steadily at higher k.
 
@@ -488,7 +490,7 @@ pca_df <- as_tibble(pca$x[, 1:2]) %>%
 ggplot(pca_df, aes(x = PC1, y = PC2, colour = cluster)) +
   geom_point(alpha = 0.6) +
   labs(title = "K-means clusters visualised in first two PCs") +
-  theme_minimal()
+  theme_bw()
 ```
 
 The PCA plot shows that Cluster 1 and Cluster 2 occupy different regions along the first principal component (PC1), which shows a meaningful separation between the groups. The strongest variation occurs along PC1, which appears to represent an extroversion–introversion dimension. This supports the K-means solution with two dominant clusters. Interestingly, the projection reveals a subtle tri-modal pattern along PC1, suggesting that additional substructure may exist within the dataset. However, the two-cluster solution still captures the most significant division in personality traits. 
@@ -498,11 +500,15 @@ Overall, K-means clustering reveals that the *Personality Synthetic Dataset* con
 # Conclusion
 Across all four clustering methods, including PAM, COP-KMeans, DBSCAN, and K-means, our analysis reveals a consistent structure in the *Personality Synthetic Dataset*. Despite using different definitions of similarity, each method identifies clear separation along the dataset's dominant personality dimension, mainly along the introversion–extroversion axis. This phenomenon across models demonstrate that the dataset contains meaningful psychological structure.
 
-The distance-based methods, such as PAM, COP-KMeans, and K-means, perform particularly well because the clusters in this dataset are compact and roughly spherical. PAM and COP-KMeans both concluded three groups corresponding to introverts, extroverts, and an intermediate ambivert-like cluster. Additionally, K-means, optimized for simple geometric separation, identifies the strongest two-group structure, which is the introverts-extroverts structure, but does not consistently detect the subtler third cluster, which is the ambivert cluster.
+The distance-based methods, such as PAM, COP-KMeans, and K-means, perform well because the clusters in this dataset are compact and roughly spherical. PAM and COP-KMeans both concluded three groups corresponding to introverts, extroverts, and an intermediate ambivert-like cluster. Additionally, K-means, optimized for simple geometric separation, identifies the strongest two-group structure, which is the introverts-extroverts structure, but does not consistently detect the subtler third cluster, which is the ambivert cluster.
 
 By contrast, DBSCAN uses a density-based approach, which is advantageous for discovering irregular cluster shapes and identifying noise. However, in this high-dimensional setting, density estimation becomes unstable, causing DBSCAN to flag many points as noise. Even so, the major clusters it identifies remain consistent with the distance-based methods.
 
 Conclusively, the comparison reveals that while all methods capture the dominant personality dimension, their effectiveness depends on the assumptions they impose. K-means is efficient and stable for large numeric datasets; PAM offers robustness and interpretability; COP-KMeans excels when slight supervision is available; and DBSCAN is best suited for non-spherical clusters and outlier detection. These results demonstrate how clustering algorithms with different philosophies can provide complementary perspectives while ultimately converging on the same core structure within the data.
+
+Furthermore, it is important to note that this was a synthetically generated dataset. Real world dataset might have problems dealing with correaltion, missing data, class imbalance (although all four clustering methods perform relatively well with class imbalance datasets as well). If you have highly correlated dataset you might expect a wider spread in the clusters. Our dataset had a lot of correlation too (see the heatmap in the [EDA section](https://github.com/pstat197/vignette-Supervised-Unsupervised-Clustering/blob/main/Scripts/drafts/ExploratoryAnalysis.Rmd)), however, the methods we deployed could correctly identify the clusters. With a lot of correlation you might expect wider clusters since the model will be confusing the correlation between variables more than they are actually used for predicting the personaility type. This exact reason is why we see wider clusters when we have correlation. 
+
+If the boundaries are getting blurry when you have correlation, please refer to other resources to deal with your correlation accordingly. Some suggestions from us is deploying a variable selection method before continuing with clustering. Some common variable selection methods widely used are Lasso (if the data is linear), Randomized Lasso, Elastic Net, Stepwise selection, Graphical Modelling, Principle Component Analysis (PCA was done in the code for visualizing some of the clustering methods we used as well), and even some Tree-Based importance methods. 
 
 # References
 
@@ -513,3 +519,13 @@ Miah, Arif. “Introvert, Extrovert & Ambivert Classification.” Kaggle.com, 20
 Schubert, Erich, and Peter J. Rousseeuw. "Faster k-medoids clustering: improving the PAM, CLARA, and CLARANS algorithms." International conference on similarity search and applications. Cham: Springer International Publishing, 2019.
 
 Wagstaff, Kiri, et al. "Constrained k-means clustering with background knowledge." Icml. Vol. 1. 2001.
+
+Meinshausen, N., & Bühlmann, P. (2010). Stability selection. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 72(4), 417–473.
+
+Tibshirani, R. (1996). Regression shrinkage and selection via the Lasso. Journal of the Royal Statistical Society: Series B, 58(1), 267–288.
+
+Zou, H., & Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society: Series B, 67(2), 301–320.
+
+Zhao, P., & Yu, B. (2006). On model selection consistency of Lasso. Journal of Machine Learning Research, 7, 2541–2563.
+
+Wainwright, M. J. (2009). Sharp thresholds for high-dimensional and noisy sparsity recovery using Lasso. IEEE Transactions on Information Theory, 55(5), 2183–2202.
